@@ -2,6 +2,7 @@ import { getSentryRelease } from '@sentry/node';
 import { logger } from '@sentry/utils';
 import defaultWebpackPlugin, { SentryCliPluginOptions } from '@sentry/webpack-plugin';
 import * as SentryWebpackPlugin from '@sentry/webpack-plugin';
+import * as path from 'path';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type PlainObject<T = any> = { [key: string]: T };
@@ -14,7 +15,9 @@ type PlainObject<T = any> = { [key: string]: T };
 type WebpackExport = (config: WebpackConfig, options: WebpackOptions) => WebpackConfig;
 
 // The two arguments passed to the exported `webpack` function, as well as the thing it returns
-type WebpackConfig = { devtool: string; plugins: PlainObject[]; entry: EntryProperty };
+// TODO use real webpack types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type WebpackConfig = { devtool: string; plugins: PlainObject[]; entry: EntryProperty; module: { rules: any[] } };
 type WebpackOptions = { dev: boolean; isServer: boolean };
 
 // For our purposes, the value for `entry` is either an object, or a function which returns such an object
@@ -146,6 +149,42 @@ export function withSentryConfig(
     if (!options.dev) {
       newConfig.devtool = 'source-map';
     }
+
+    // Wherever the webpack process ultimately runs, it's not somewhere where modules resolve successfully, so get the
+    // absolute paths here, where resolution does work, and pass those into the config instead of the module names
+    const sdkResolvedMain = require.resolve('@sentry/nextjs');
+    const loaderPath = path.join(path.dirname(sdkResolvedMain), 'utils/api-wrapping-loader.js');
+    const babelLoaderResolvedMain = require.resolve('babel-loader');
+    const babelPluginResolvedMain = require.resolve('@babel/plugin-transform-modules-commonjs');
+
+    newConfig.module = {
+      ...newConfig.module,
+      rules: [
+        ...newConfig.module.rules,
+        {
+          test: /pages\/api\/.*/,
+          use: [
+            {
+              // `sdkResolvedMain` is the path to `dist/index.server.js`
+              loader: loaderPath,
+              options: {
+                // pass the path into the loader so it can be used there as well (it's another place where modules don't
+                // resolve well)
+                sdkPath: sdkResolvedMain,
+              },
+            },
+            {
+              loader: babelLoaderResolvedMain,
+              options: {
+                // this is here to turn any `import`s into `requires`, so that our loader can load the string as a
+                // module (loaders apply top to bottom, so this happens before ours)
+                plugins: [babelPluginResolvedMain],
+              },
+            },
+          ],
+        },
+      ],
+    };
 
     // Inject user config files (`sentry.client.confg.js` and `sentry.server.config.js`), which is where `Sentry.init()`
     // is called. By adding them here, we ensure that they're bundled by webpack as part of both server code and client code.

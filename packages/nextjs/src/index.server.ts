@@ -1,5 +1,6 @@
 import { configureScope, init as nodeInit } from '@sentry/node';
 
+import { instrumentServer } from './utils/instrumentServer';
 import { MetadataBuilder } from './utils/metadataBuilder';
 import { NextjsOptions } from './utils/nextjsOptions';
 import { defaultRewriteFrames, getFinalServerIntegrations } from './utils/serverIntegrations';
@@ -27,3 +28,6 @@ export function init(options: NextjsOptions): void {
 }
 
 export { withSentryConfig } from './utils/config';
+
+// TODO capture project root (which this returns) for RewriteFrames?
+instrumentServer();

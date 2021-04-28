@@ -80,13 +80,24 @@ function getOptions(loaders: Loader[]): LoaderOptions | undefined {
 /** Wrap the given request handler for error-catching purposes */
 function makeWrappedRequestHandler(origHandler: RequestHandler): WrappedRequestHandler {
   // TODO are there any overloads we need to worry about?
-  return async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-    try {
-      return await origHandler(req, res);
-    } catch (err) {
-      Sentry.captureException(err);
-      await Sentry.flush(2000);
+  return (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+    return origHandler(req, res).catch(err => {
+      if (Sentry !== undefined) {
+        Sentry.withScope(scope => {
+          scope.addEventProcessor(event => Sentry.Handlers.parseRequest(event, req));
+          Sentry.captureException(err);
+          // eslint-disable-next-line no-console
+        });
+        Sentry.flush(2000).catch(() => {
+          // Never throws
+        });
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(
+          "[Sentry] Please make sure to `import * as Sentry from '@sentry/nextjs';` in your file in order to capture errors",
+        );
+      }
       throw err;
-    }
+    });
   };
 }

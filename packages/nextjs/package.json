@@ -28,6 +28,7 @@
     "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
     "@types/prettier": "^2.2.3",
     "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@types/webpack": "^5.28.0",
     "eslint": "7.20.0",
     "eslint-plugin-jsonc": "^1.2.1",

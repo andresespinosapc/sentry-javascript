@@ -16,12 +16,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/browser": "6.3.3",
-    "@sentry/types": "6.3.3",
+    "@sentry/browser": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/browser?kmclb-vercel-dependency-test",
+    "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
-    "@sentry-internal/eslint-config-sdk": "6.3.3",
+    "@sentry-internal/eslint-config-sdk": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/eslint-config-sdk?kmclb-vercel-dependency-test",
     "@types/jest-environment-puppeteer": "^4.4.0",
     "@types/puppeteer": "^5.4.0",
     "eslint": "7.6.0",
@@ -58,9 +58,6 @@
     "test": "PORT=1337 jest",
     "test:watch": "jest --watch",
     "pack": "npm pack"
-  },
-  "volta": {
-    "extends": "../../package.json"
   },
   "jest": {
     "preset": "jest-puppeteer"

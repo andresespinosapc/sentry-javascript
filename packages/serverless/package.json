@@ -16,11 +16,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/minimal": "6.3.3",
-    "@sentry/node": "6.3.3",
-    "@sentry/tracing": "6.3.3",
-    "@sentry/types": "6.3.3",
-    "@sentry/utils": "6.3.3",
+    "@sentry/minimal": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/minimal?kmclb-vercel-dependency-test",
+    "@sentry/node": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/node?kmclb-vercel-dependency-test",
+    "@sentry/tracing": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/tracing?kmclb-vercel-dependency-test",
+    "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
+    "@sentry/utils": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/utils?kmclb-vercel-dependency-test",
     "@types/aws-lambda": "^8.10.62",
     "@types/express": "^4.17.2",
     "tslib": "^1.9.3"
@@ -30,7 +30,7 @@
     "@google-cloud/common": "^3.4.1",
     "@google-cloud/functions-framework": "^1.7.1",
     "@google-cloud/pubsub": "^2.5.0",
-    "@sentry-internal/eslint-config-sdk": "6.3.3",
+    "@sentry-internal/eslint-config-sdk": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/eslint-config-sdk?kmclb-vercel-dependency-test",
     "@types/node": "^14.6.4",
     "aws-sdk": "^2.765.0",
     "eslint": "7.6.0",
@@ -65,9 +65,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "pack": "npm pack"
-  },
-  "volta": {
-    "extends": "../../package.json"
   },
   "sideEffects": false,
   "jest": {

@@ -16,11 +16,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/browser": "6.3.3",
-    "@sentry/core": "6.3.3",
-    "@sentry/minimal": "6.3.3",
-    "@sentry/types": "6.3.3",
-    "@sentry/utils": "6.3.3",
+    "@sentry/browser": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/browser?kmclb-vercel-dependency-test",
+    "@sentry/core": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/core?kmclb-vercel-dependency-test",
+    "@sentry/minimal": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/minimal?kmclb-vercel-dependency-test",
+    "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
+    "@sentry/utils": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/utils?kmclb-vercel-dependency-test",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
@@ -28,7 +28,7 @@
     "vue-router": "3.x"
   },
   "devDependencies": {
-    "@sentry-internal/eslint-config-sdk": "6.3.3",
+    "@sentry-internal/eslint-config-sdk": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/eslint-config-sdk?kmclb-vercel-dependency-test",
     "eslint": "7.6.0",
     "jest": "^24.7.1",
     "jsdom": "^16.2.2",
@@ -65,9 +65,6 @@
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "pack": "npm pack"
-  },
-  "volta": {
-    "extends": "../../package.json"
   },
   "jest": {
     "collectCoverage": true,

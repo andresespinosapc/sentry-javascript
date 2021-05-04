@@ -16,18 +16,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/core": "6.3.3",
-    "@sentry/hub": "6.3.3",
-    "@sentry/tracing": "6.3.3",
-    "@sentry/types": "6.3.3",
-    "@sentry/utils": "6.3.3",
+    "@sentry/core": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/core?kmclb-vercel-dependency-test",
+    "@sentry/hub": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/hub?kmclb-vercel-dependency-test",
+    "@sentry/tracing": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/tracing?kmclb-vercel-dependency-test",
+    "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
+    "@sentry/utils": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/utils?kmclb-vercel-dependency-test",
     "cookie": "^0.4.1",
     "https-proxy-agent": "^5.0.0",
     "lru_map": "^0.3.3",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
-    "@sentry-internal/eslint-config-sdk": "6.3.3",
+    "@sentry-internal/eslint-config-sdk": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/eslint-config-sdk?kmclb-vercel-dependency-test",
     "@types/cookie": "0.3.2",
     "@types/express": "^4.17.2",
     "@types/lru-cache": "^5.1.0",
@@ -62,9 +62,6 @@
     "test:express": "node test/manual/express-scope-separation/start.js",
     "test:webpack": "cd test/manual/webpack-domain/ && yarn && node npm-build.js",
     "pack": "npm pack"
-  },
-  "volta": {
-    "extends": "../../package.json"
   },
   "jest": {
     "collectCoverage": true,

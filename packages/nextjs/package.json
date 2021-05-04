@@ -17,15 +17,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/core": "6.3.3",
-    "@sentry/integrations": "6.3.3",
-    "@sentry/node": "6.3.3",
-    "@sentry/react": "6.3.3",
-    "@sentry/utils": "6.3.3",
+    "@sentry/core": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/core?kmclb-vercel-dependency-test",
+    "@sentry/integrations": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/integrations?kmclb-vercel-dependency-test",
+    "@sentry/node": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/node?kmclb-vercel-dependency-test",
+    "@sentry/react": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/react?kmclb-vercel-dependency-test",
+    "@sentry/utils": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/utils?kmclb-vercel-dependency-test",
     "@sentry/webpack-plugin": "1.15.0"
   },
   "devDependencies": {
-    "@sentry/types": "6.3.3",
+    "@sentry/types": "https://gitpkg.now.sh/getsentry/sentry-javascript/packages/types?kmclb-vercel-dependency-test",
     "@types/prettier": "^2.2.3",
     "@types/react": "^17.0.3",
     "@types/webpack": "^5.28.0",
@@ -56,9 +56,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "pack": "npm pack"
-  },
-  "volta": {
-    "extends": "../../package.json"
   },
   "jest": {
     "collectCoverage": true,
